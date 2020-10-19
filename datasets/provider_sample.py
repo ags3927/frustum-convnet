@@ -53,6 +53,10 @@ class ProviderDataset(Dataset):
 
         self.one_hot = one_hot
         self.from_rgb_detection = from_rgb_detection
+        # MODIFICATION START - error distribution of heuristic
+        self.errorMargins = np.empty(0)
+        self.printPercentiles = False
+        # MODIFICATION END - error distribution of heuristic
 
         dataset_name = cfg.DATA.DATASET_NAME
         assert dataset_name in DATASET_INFO
@@ -106,6 +110,9 @@ class ProviderDataset(Dataset):
                 self.frustum_angle_list = pickle.load(fp)
                 self.gt_box2d_list = pickle.load(fp)
                 self.calib_list = pickle.load(fp)
+                # MODIFICATION START - load ground truth centers
+                self.center_3d_raw_kitti = pickle.load(fp)
+                # MODIFICATION END - load ground truth centers
 
             if extend_from_det:
                 extend_det_file = overwritten_data_path.replace('.', '_det.')
@@ -123,12 +130,58 @@ class ProviderDataset(Dataset):
                     self.frustum_angle_list.extend(pickle.load(fp))
                     self.gt_box2d_list.extend(pickle.load(fp))
                     self.calib_list.extend(pickle.load(fp))
+                    # MODIFICATION START - load ground truth centers
+                    self.center_3d_raw_kitti.extend(pickle.load(fp))
+                    # MODIFICATION END - load ground truth centers
                 logger.info('load dataset from {}'.format(extend_det_file))
 
         logger.info('load dataset from {}'.format(overwritten_data_path))
 
     def __len__(self):
         return len(self.input_list)
+
+    # MODIFICATION START - HEURISTIC FUNCTIONS
+
+    def regress_to_find_center(self, point_cloud_arr, stride = .5):
+        # print(point_cloud_arr.shape)
+        # sorted_arr = point_cloud_arr[np.argsort(point_cloud_arr[:,2])]
+
+        freq_dict = defaultdict(int)
+        freq_dict_aggregate = defaultdict(int)
+        
+        for idx in range(len(point_cloud_arr)):
+            bin_number = point_cloud_arr[idx][2] // stride
+            freq_dict[bin_number] += 1 
+
+        max_key = max(freq_dict, key=freq_dict.get)
+    
+        # print(float(max_key) * stride)
+        return max_key * stride
+
+    def regress_to_find_center_aggregate(self, point_cloud_arr, stride = 0.5):
+        freq_dict = defaultdict(int)
+        # key = discrete z distance steps.
+        # value = Number of pcl points that has z values at that step or bin.
+        # bins are basically discrete z distance steps. Each step is separated by a stride of 0.5.
+        # point_cloud_arr[idx][2] // stride finds exactly which "step" that certain point cloud goes to.
+        # We also add that point cloud value to the steps that come just before and after too, to great a sort of weighted average.
+        for idx in range(len(point_cloud_arr)):
+            bin_number = np.round(point_cloud_arr[idx][2] / stride)
+            freq_dict[bin_number] += 1
+            freq_dict[bin_number - 1] += 1
+            freq_dict[bin_number + 1] += 1
+            freq_dict[bin_number - 2] += 1
+            freq_dict[bin_number + 2] += 1
+            freq_dict[bin_number - 2] += 1
+            freq_dict[bin_number + 2] += 1
+        # print("Aggregate dictionary")
+        # print(freq_dict)
+        max_key = max(freq_dict, key=freq_dict.get)
+        # find the key or "discrete stride step" which has the maximum value.
+        # We multiply the step by the stride to get the original z value.
+        return max_key * stride
+
+    # MODIFICATION END - HEURISTIC FUNCTIONS
 
     def __getitem__(self, index):
 
@@ -160,6 +213,26 @@ class ProviderDataset(Dataset):
         if not with_extra_feat:
             point_set = point_set[:, :3]
 
+        # MODIFICATION START - RUN HEURISTIC FUNCTION AND EVALUATE
+        z_sliding_window_regress = self.regress_to_find_center_aggregate(point_set, 0.5)
+
+        ### START CODE FOR EVALUATING HEURISTIC
+
+        # self.errorMargins = np.append(self.errorMargins, np.absolute(z_sliding_window_regress - self.center_3d_raw_kitti[index][2]))
+        
+        # if (index > 0.999 * len(self.input_list)) and (self.printPercentiles is False):
+        #     print('PERCENTILES = ' + str(np.percentile(self.errorMargins, [5*x for x in range(0, 21)])))
+        #     self.printPercentiles = True
+        #     percentileFile = open('errorPercentiles', 'w+')
+        #     percentileFile.write('PERCENTILES FOR [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100] = ' + str(np.percentile(self.errorMargins, [5*x for x in range(0, 21)])))
+        #     percentileFile.close()
+        #     # plt.plot(errorBuckets, self.errorMargins)
+        #     # plt.show()
+
+        ### END CODE FOR EVALUATING HEURISTIC
+
+        # MODIFICATION END - RUN HEURISTIC FUNCTION AND EVALUATE
+
         # Resample
         if self.npoints > 0:
             # choice = np.random.choice(point_set.shape[0], self.npoints, replace=True)
@@ -173,7 +246,9 @@ class ProviderDataset(Dataset):
         box = self.box2d_list[index]
         P = self.calib_list[index]['P2'].reshape(3, 4)
 
-        ref1, ref2, ref3, ref4 = self.generate_ref(box, P)
+        # MODIFICATION START - PASS GENERATED Z VALUES TO GENERATE REF
+        ref1, ref2, ref3, ref4 = self.generate_ref(box, P, z_sliding_window_regress)
+        # MODIFICATION END - PASS GENERATED Z VALUES TO GENERATE REF
 
         if rotate_to_center:
             ref1 = self.get_center_view(ref1, index)
@@ -288,15 +363,34 @@ class ProviderDataset(Dataset):
 
         return labels
 
-    def generate_ref(self, box, P):
+    # MODIFICATION START - RETURN DEPTH BOUNDS TO SEARCH
+    def resolve_centers_z(self, z_sliding_window_regress):
+        lower = max(0, z_sliding_window_regress - 8)
+        upper = min(70, z_sliding_window_regress + 8)
+
+        if z_sliding_window_regress < 8:
+            upper += 8 - z_sliding_window_regress
+
+        if z_sliding_window_regress > 62:
+            lower -= z_sliding_window_regress - 62
+        return lower, upper
+    # MODIFICATION END - RETURN DEPTH BOUNDS TO SEARCH
+
+    def generate_ref(self, box, P, z_sliding_window_regress):
 
         s1, s2, s3, s4 = cfg.DATA.STRIDE
         max_depth = cfg.DATA.MAX_DEPTH
+        # MODIFIATION START - GENERATE DEPTH BOUNDS FOR SEARCHING
+        z_sliding_window_regress = np.floor(z_sliding_window_regress)
+        lower, upper = self.resolve_centers_z(z_sliding_window_regress)  # Modified z axis bounds
+        # MODIFICATION END - GENERATE DEPTH BOUNDS FOR SEARCHING
 
-        z1 = np.arange(0, max_depth, s1) + s1 / 2.
-        z2 = np.arange(0, max_depth, s2) + s2 / 2.
-        z3 = np.arange(0, max_depth, s3) + s3 / 2.
-        z4 = np.arange(0, max_depth, s4) + s4 / 2.
+        # MODIFICATION START - SEARCH THROUGH GENERATED DEPTH BOUNDS INSTEAD OF 70M
+        z1 = np.arange(lower, upper, s1) + s1 / 2.
+        z2 = np.arange(lower, upper, s2) + s2 / 2.
+        z3 = np.arange(lower, upper, s3) + s3 / 2.
+        z4 = np.arange(lower, upper, s4) + s4 / 2.
+        # MODIFICATION END - SEARCH THROUGH GENERATED DEPTH BOUNDS INSTEAD OF 70M
 
         cx, cy = (box[0] + box[2]) / 2., (box[1] + box[3]) / 2.,
 

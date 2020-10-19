@@ -1,0 +1,24 @@
+mkdir: cannot create directory ‘output/car_train/val_nms/result/plot’: File exists
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection.pdf'.
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection_ground.pdf'.
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection_3d.pdf'.
+Thank you for participating in our evaluation!
+Loading detections...
+number of files for evaluation: 3769
+  done.
+save output/car_train/val_nms/result/plot/car_detection.txt
+car_detection AP: 98.316498 90.375977 88.126160
+Finished 2D bounding box eval.
+Going to eval ground for class: car
+save output/car_train/val_nms/result/plot/car_detection_ground.txt
+car_detection_ground AP: 89.910774 87.455505 78.975800
+Finished Birdeye eval.
+Going to eval 3D box for class: car
+save output/car_train/val_nms/result/plot/car_detection_3d.txt
+car_detection_3d AP: 87.500572 76.981613 68.479111
+Finished 3D bounding box eval.
+Your evaluation results are available at:
+output/car_train/val_nms/result

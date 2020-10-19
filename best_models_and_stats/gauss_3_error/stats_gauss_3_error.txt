@@ -1,0 +1,22 @@
+BEST Epoch =  28 
+BEST AP =  0.8771682432211649
+
+
+Validation 
+Epoch: 029
+Last Data/Batch Time: 0.00003/0.01692
+Avg Data/Batch Time: 0.00050/0.02411
+total_loss: 1.05815
+cls_loss: 0.02184
+center_loss: 0.02092
+head_cls_loss: 0.24275
+head_res_loss: 0.01537
+size_cls_loss: 0.00011
+size_res_loss: 0.00646
+corners_loss: 0.03358
+cls_acc: 0.91415
+head_acc: 0.91469
+size_acc: 1.00000
+IoU_2D: 0.84291
+IoU_3D: 0.79396
+IoU_0.7: 0.87717 

@@ -1,0 +1,355 @@
+mkdir: cannot create directory ‘output/car_train/val_nms/result/plot’: File exists
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection.pdf'.
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection_ground.pdf'.
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection_3d.pdf'.
+Thank you for participating in our evaluation!
+Loading detections...
+number of files for evaluation: 3769
+  done.
+save output/car_train/val_nms/result/plot/car_detection.txt
+car_detection AP: 96.942253 90.194527 87.773720
+Finished 2D bounding box eval.
+Going to eval ground for class: car
+save output/car_train/val_nms/result/plot/car_detection_ground.txt
+car_detection_ground AP: 89.565979 84.466232 70.053238
+Finished Birdeye eval.
+Going to eval 3D box for class: car
+save output/car_train/val_nms/result/plot/car_detection_3d.txt
+car_detection_3d AP: 86.972359 73.610039 64.967621
+Finished 3D bounding box eval.
+Your evaluation results are available at:
+output/car_train/val_nms/result
+mkdir: cannot create directory ‘output/car_train/val_nms/result/plot’: File exists
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection.pdf'.
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection_ground.pdf'.
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection_3d.pdf'.
+Thank you for participating in our evaluation!
+Loading detections...
+number of files for evaluation: 3769
+  done.
+save output/car_train/val_nms/result/plot/car_detection.txt
+car_detection AP: 96.942253 90.194527 87.773720
+Finished 2D bounding box eval.
+Going to eval ground for class: car
+save output/car_train/val_nms/result/plot/car_detection_ground.txt
+car_detection_ground AP: 89.565979 84.466232 70.053238
+Finished Birdeye eval.
+Going to eval 3D box for class: car
+save output/car_train/val_nms/result/plot/car_detection_3d.txt
+car_detection_3d AP: 86.972359 73.610039 64.967621
+Finished 3D bounding box eval.
+Your evaluation results are available at:
+output/car_train/val_nms/result
+mkdir: cannot create directory ‘output/car_train/val_nms/result/plot’: File exists
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection.pdf'.
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection_ground.pdf'.
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection_3d.pdf'.
+Thank you for participating in our evaluation!
+Loading detections...
+number of files for evaluation: 3769
+  done.
+save output/car_train/val_nms/result/plot/car_detection.txt
+car_detection AP: 96.942253 90.194527 87.773720
+Finished 2D bounding box eval.
+Going to eval ground for class: car
+save output/car_train/val_nms/result/plot/car_detection_ground.txt
+car_detection_ground AP: 89.565979 84.466232 70.053238
+Finished Birdeye eval.
+Going to eval 3D box for class: car
+save output/car_train/val_nms/result/plot/car_detection_3d.txt
+car_detection_3d AP: 86.972359 73.610039 64.967621
+Finished 3D bounding box eval.
+Your evaluation results are available at:
+output/car_train/val_nms/result
+mkdir: cannot create directory ‘output/car_train/val_nms/result/plot’: File exists
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection.pdf'.
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection_ground.pdf'.
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection_3d.pdf'.
+Thank you for participating in our evaluation!
+Loading detections...
+number of files for evaluation: 3769
+  done.
+save output/car_train/val_nms/result/plot/car_detection.txt
+car_detection AP: 96.942253 90.194527 87.773720
+Finished 2D bounding box eval.
+Going to eval ground for class: car
+save output/car_train/val_nms/result/plot/car_detection_ground.txt
+car_detection_ground AP: 89.565979 84.466232 70.053238
+Finished Birdeye eval.
+Going to eval 3D box for class: car
+save output/car_train/val_nms/result/plot/car_detection_3d.txt
+car_detection_3d AP: 86.972359 73.610039 64.967621
+Finished 3D bounding box eval.
+Your evaluation results are available at:
+output/car_train/val_nms/result
+mkdir: cannot create directory ‘output/car_train/val_nms/result/plot’: File exists
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection.pdf'.
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection_ground.pdf'.
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection_3d.pdf'.
+Thank you for participating in our evaluation!
+Loading detections...
+number of files for evaluation: 3769
+  done.
+save output/car_train/val_nms/result/plot/car_detection.txt
+car_detection AP: 96.942253 90.194527 87.773720
+Finished 2D bounding box eval.
+Going to eval ground for class: car
+save output/car_train/val_nms/result/plot/car_detection_ground.txt
+car_detection_ground AP: 89.565979 84.466232 70.053238
+Finished Birdeye eval.
+Going to eval 3D box for class: car
+save output/car_train/val_nms/result/plot/car_detection_3d.txt
+car_detection_3d AP: 86.972359 73.610039 64.967621
+Finished 3D bounding box eval.
+Your evaluation results are available at:
+output/car_train/val_nms/result
+mkdir: cannot create directory ‘output/car_train/val_nms/result/plot’: File exists
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection.pdf'.
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection_ground.pdf'.
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection_3d.pdf'.
+Thank you for participating in our evaluation!
+Loading detections...
+number of files for evaluation: 3769
+  done.
+save output/car_train/val_nms/result/plot/car_detection.txt
+car_detection AP: 96.942253 90.194527 87.773720
+Finished 2D bounding box eval.
+Going to eval ground for class: car
+save output/car_train/val_nms/result/plot/car_detection_ground.txt
+car_detection_ground AP: 89.565979 84.466232 70.053238
+Finished Birdeye eval.
+Going to eval 3D box for class: car
+save output/car_train/val_nms/result/plot/car_detection_3d.txt
+car_detection_3d AP: 86.972359 73.610039 64.967621
+Finished 3D bounding box eval.
+Your evaluation results are available at:
+output/car_train/val_nms/result
+mkdir: cannot create directory ‘output/car_train/val_nms/result/plot’: File exists
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection.pdf'.
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection_ground.pdf'.
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection_3d.pdf'.
+Thank you for participating in our evaluation!
+Loading detections...
+number of files for evaluation: 3769
+  done.
+save output/car_train/val_nms/result/plot/car_detection.txt
+car_detection AP: 99.934792 99.955086 99.963493
+Finished 2D bounding box eval.
+Going to eval ground for class: car
+save output/car_train/val_nms/result/plot/car_detection_ground.txt
+car_detection_ground AP: 94.800529 86.208549 77.599655
+Finished Birdeye eval.
+Going to eval 3D box for class: car
+save output/car_train/val_nms/result/plot/car_detection_3d.txt
+car_detection_3d AP: 86.652985 76.611710 68.017128
+Finished 3D bounding box eval.
+Your evaluation results are available at:
+output/car_train/val_nms/result
+mkdir: cannot create directory ‘output/car_train/val_nms/result/plot’: File exists
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection.pdf'.
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection_ground.pdf'.
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection_3d.pdf'.
+Thank you for participating in our evaluation!
+Loading detections...
+number of files for evaluation: 3769
+  done.
+save output/car_train/val_nms/result/plot/car_detection.txt
+car_detection AP: 99.934792 99.955086 99.963493
+Finished 2D bounding box eval.
+Going to eval ground for class: car
+save output/car_train/val_nms/result/plot/car_detection_ground.txt
+car_detection_ground AP: 94.800529 86.208549 77.599655
+Finished Birdeye eval.
+Going to eval 3D box for class: car
+save output/car_train/val_nms/result/plot/car_detection_3d.txt
+car_detection_3d AP: 86.652985 76.611710 68.017128
+Finished 3D bounding box eval.
+Your evaluation results are available at:
+output/car_train/val_nms/result
+mkdir: cannot create directory ‘output/car_train/val_nms/result/plot’: File exists
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection.pdf'.
+mkdir: cannot create directory ‘output/car_train/val_nms/result/plot’: File exists
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection.pdf'.
+mkdir: cannot create directory ‘output/car_train/val_nms/result/plot’: File exists
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection.pdf'.
+mkdir: cannot create directory ‘output/car_train/val_nms/result/plot’: File exists
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection.pdf'.
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection_ground.pdf'.
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection_3d.pdf'.
+Thank you for participating in our evaluation!
+Loading detections...
+number of files for evaluation: 3769
+  done.
+save output/car_train/val_nms/result/plot/car_detection.txt
+car_detection AP: 99.934792 99.955086 99.963493
+Finished 2D bounding box eval.
+Going to eval ground for class: car
+save output/car_train/val_nms/result/plot/car_detection_ground.txt
+car_detection_ground AP: 94.800529 86.208549 77.599655
+Finished Birdeye eval.
+Going to eval 3D box for class: car
+save output/car_train/val_nms/result/plot/car_detection_3d.txt
+car_detection_3d AP: 86.652985 76.611710 68.017128
+Finished 3D bounding box eval.
+Your evaluation results are available at:
+output/car_train/val_nms/result
+mkdir: cannot create directory ‘output/car_train/val_nms/result/plot’: File exists
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection.pdf'.
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection_ground.pdf'.
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection_3d.pdf'.
+Thank you for participating in our evaluation!
+Loading detections...
+number of files for evaluation: 3769
+  done.
+save output/car_train/val_nms/result/plot/car_detection.txt
+car_detection AP: 99.934792 99.955086 99.963493
+Finished 2D bounding box eval.
+Going to eval ground for class: car
+save output/car_train/val_nms/result/plot/car_detection_ground.txt
+car_detection_ground AP: 94.800529 86.208549 77.599655
+Finished Birdeye eval.
+Going to eval 3D box for class: car
+save output/car_train/val_nms/result/plot/car_detection_3d.txt
+car_detection_3d AP: 86.652985 76.611710 68.017128
+Finished 3D bounding box eval.
+Your evaluation results are available at:
+output/car_train/val_nms/result
+mkdir: cannot create directory ‘output/car_train/val_nms/result/plot’: File exists
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection.pdf'.
+mkdir: cannot create directory ‘output/car_train/val_nms/result/plot’: File exists
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection.pdf'.
+mkdir: cannot create directory ‘output/car_train/val_nms/result/plot’: File exists
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection.pdf'.
+mkdir: cannot create directory ‘output/car_train/val_nms/result/plot’: File exists
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection.pdf'.
+mkdir: cannot create directory ‘output/car_train/val_nms/result/plot’: File exists
+mkdir: cannot create directory ‘output/car_train/val_nms/result/plot’: File exists
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection.pdf'.
+mkdir: cannot create directory ‘output/car_train/val_nms/result/plot’: File exists
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection.pdf'.
+mkdir: cannot create directory ‘output/car_train/val_nms/result/plot’: File exists
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection.pdf'.
+mkdir: cannot create directory ‘output/car_train/val_nms/result/plot’: File exists
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection.pdf'.
+mkdir: cannot create directory ‘output/car_train/val_nms/result/plot’: File exists
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection.pdf'.
+mkdir: cannot create directory ‘output/car_train/val_nms/result/plot’: File exists
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection.pdf'.
+mkdir: cannot create directory ‘output/car_train/val_nms/result/plot’: File exists
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection.pdf'.
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection_ground.pdf'.
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection_3d.pdf'.
+Thank you for participating in our evaluation!
+Loading detections...
+number of files for evaluation: 3769
+  done.
+save output/car_train/val_nms/result/plot/car_detection.txt
+car_detection AP: 99.925537 99.949356 99.956573
+Finished 2D bounding box eval.
+Going to eval ground for class: car
+save output/car_train/val_nms/result/plot/car_detection_ground.txt
+car_detection_ground AP: 89.556244 86.928024 78.327164
+Finished Birdeye eval.
+Going to eval 3D box for class: car
+save output/car_train/val_nms/result/plot/car_detection_3d.txt
+car_detection_3d AP: 87.265297 77.668671 68.913750
+Finished 3D bounding box eval.
+Your evaluation results are available at:
+output/car_train/val_nms/result
+mkdir: cannot create directory ‘output/car_train/val_nms/result/plot’: File exists
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection.pdf'.
+mkdir: cannot create directory ‘output/car_train/val_nms/result/plot’: File exists
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection.pdf'.
+mkdir: cannot create directory ‘output/car_train/val_nms/result/plot’: File exists
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection.pdf'.
+mkdir: cannot create directory ‘output/car_train/val_nms/result/plot’: File exists
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection.pdf'.
+mkdir: cannot create directory ‘output/car_train/val_nms/result/plot’: File exists
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection.pdf'.
+mkdir: cannot create directory ‘output/car_train/val_nms/result/plot’: File exists
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection.pdf'.
+mkdir: cannot create directory ‘output/car_train/val_nms/result/plot’: File exists
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection.pdf'.
+mkdir: cannot create directory ‘output/car_train/val_nms/result/plot’: File exists
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection.pdf'.
+mkdir: cannot create directory ‘output/car_train/val_nms/result/plot’: File exists
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection.pdf'.
+mkdir: cannot create directory ‘output/car_train/val_nms/result/plot’: File exists
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection.pdf'.
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection_ground.pdf'.
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `car_detection_3d.pdf'.
+Thank you for participating in our evaluation!
+Loading detections...
+number of files for evaluation: 3769
+  done.
+save output/car_train/val_nms/result/plot/car_detection.txt
+car_detection AP: 97.976326 90.319733 87.908592
+Finished 2D bounding box eval.
+Going to eval ground for class: car
+save output/car_train/val_nms/result/plot/car_detection_ground.txt
+car_detection_ground AP: 89.818123 85.599136 77.473259
+Finished Birdeye eval.
+Going to eval 3D box for class: car
+save output/car_train/val_nms/result/plot/car_detection_3d.txt
+car_detection_3d AP: 87.626740 76.364250 67.692184
+Finished 3D bounding box eval.
+Your evaluation results are available at:
+output/car_train/val_nms/result

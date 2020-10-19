@@ -1,0 +1,4 @@
+Average time:
+batch:0.010
+avg_per_object:0.000
+avg_per_image:0.002
