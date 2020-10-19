@@ -191,9 +191,11 @@ def validate(data_loader, model, epoch, logger=None):
     states = training_states.get_states(avg=True)
 
     states_str = training_states.format_states(states)
-    output_str = 'Validation Epoch: {:03d} Time:{:.3f}/{:.3f} ' \
-        .format(epoch + 1, data_time_meter.val, batch_time_meter.val)
-
+    # MODIFICATION START - PRINT ADDITIONAL TIMING METRICS
+    output_str = 'Validation Epoch: {:03d} Last Data/Batch Time: {:.5f}/{:.5f} Avg Data/Batch Time: {:.5f}/{:.5f} ' \
+        .format(epoch + 1, data_time_meter.val, batch_time_meter.val, data_time_meter.avg, batch_time_meter.avg)
+    # MODIFICATION END - PRINT ADDITIONAL TIMING METRICS
+    
     logging.info(output_str + states_str)
 
     if logger is not None:
