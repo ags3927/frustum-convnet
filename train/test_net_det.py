@@ -294,6 +294,15 @@ def test(model, test_dataset, test_loader, output_filename, result_dir=None):
 
     num_images = len(det_results)
 
+    #MODIFICATION START - PRINT TIME METRICS
+    timeFile = open("time-log.txt", "w")	
+    timeFile.write('Average time:\n')	
+    timeFile.write('batch:%0.3f\n' % fw_time_meter.avg)	
+    timeFile.write('avg_per_object:%0.3f\n' % (fw_time_meter.avg / load_batch_size))	
+    timeFile.write('avg_per_image:%.3f\n' % (fw_time_meter.avg * len(test_loader) / num_images))	
+    timeFile.close()
+    #MODIFICATION END - PRINT TIME METRICS
+
     logging.info('Average time:')
     logging.info('batch:%0.3f' % fw_time_meter.avg)
     logging.info('avg_per_object:%0.3f' % (fw_time_meter.avg / load_batch_size))
