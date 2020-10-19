@@ -264,6 +264,10 @@ def extract_frustum_data(idx_filename, split, output_filename,
         Lidar points and 3d boxes are in *rect camera* coord system
         (as that in 3d box label files)
 
+        Each text file (eg - 000073.txt) contains MULTIPLE cars and other objects.
+        For each call to extract_frustrum_data all of these cars and objects are loaded. 
+        Sample file loaded on for extract_frustrum_data - AVR_DATA_ROOT/training/label2/000001.txt
+
     Input:
         idx_filename: string, each line of the file is a sample ID
         split: string, either trianing or testing
@@ -293,6 +297,10 @@ def extract_frustum_data(idx_filename, split, output_filename,
     gt_box2d_list = []
 
     calib_list = []
+
+    # MODIFICATION START - DECLARE LIST TO STORE GROUND TRUTH CENTERS
+    center_3d_raw_kitti = []  # MODIFICATION: The raw centers from Kitti dataset.
+    # MODIFICATION END - DECLARE LIST TO STORE GROUND TRUTH CENTERS
 
     pos_cnt = 0
     all_cnt = 0
@@ -370,6 +378,12 @@ def extract_frustum_data(idx_filename, split, output_filename,
                 # collect statistics
                 pos_cnt += np.sum(label)
                 all_cnt += pc_in_box_fov.shape[0]
+                # MODIFICATION START - APPEND GROUND TRUTH CENTERS TO LIST
+                center_3d_raw_kitti.append(np.array(obj.t)) #modification
+                # obj.t is the 11th, 12th, 13th entry in the text files. 
+                # eg - Car 0.00 0 1.85 387.63 181.54 423.81 203.12 1.67 1.87 3.69 -16.53 2.39 58.49 1.57
+                # Ref - AVR_DATA_ROOT/training/label2/000001.txt
+                # MODIFICATION END - APPEND GROUND TRUTH CENTERS TO LIST
 
     print('total_objects %d' % len(id_list))
     print('Average pos ratio: %f' % (pos_cnt / float(all_cnt)))
@@ -387,6 +401,13 @@ def extract_frustum_data(idx_filename, split, output_filename,
         pickle.dump(frustum_angle_list, fp, -1)
         pickle.dump(gt_box2d_list, fp, -1)
         pickle.dump(calib_list, fp, -1)
+        # MODIFICATION START - PICKLE THE GROUND TRUTH CENTERS
+        pickle.dump(center_3d_raw_kitti, fp, -1) #modification
+        # Center_3d_raw_kitti contains x,y,z values for ALL the objects in a text file/scene. 
+        # center_3d_raw_kitti[0] =  (x,y,z) #values for first found object in the text file.
+        # center_3d_raw_kitti[3][2] =  Z Axis value of car for the 3rd detected object in the text file.
+        # MODIFICATION END - PICKLE THE GROUND TRUTH CENTERS
+        
 
     print('save in {}'.format(output_filename))
 
