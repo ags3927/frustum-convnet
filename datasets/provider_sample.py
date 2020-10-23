@@ -21,6 +21,7 @@ import torch
 import logging
 from torch.utils.data import Dataset
 from torch.utils.data.dataloader import default_collate
+from collections import defaultdict
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(BASE_DIR)

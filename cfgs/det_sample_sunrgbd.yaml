@@ -43,7 +43,7 @@ RESUME: False
 NUM_GPUS: 1
 OUTPUT_DIR: '/tmp'
 SAVE_SUB_DIR: 'test'
-USE_TFBOARD: True
+USE_TFBOARD: False
 NUM_WORKERS: 4
 FROM_RGB_DET: True
 OVER_WRITE_TEST_FILE: './sunrgbd/data/pickle_data/sunrgbd_rgb_det_val.pickle'

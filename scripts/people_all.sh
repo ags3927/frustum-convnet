@@ -8,7 +8,7 @@ python kitti/prepare_data.py --people_only --gen_train --gen_val --gen_val_rgb_d
 
 OUTDIR1='output/people_train'
 python train/train_net_det.py --cfg cfgs/det_sample_people.yaml OUTPUT_DIR $OUTDIR1
-python train/test_net_det.py --cfg cfgs/det_sample_people.yaml OUTPUT_DIR $OUTDIR1 TEST.WEIGHTS $OUTDIR1/model_0050.pth
+python train/test_net_det.py --cfg cfgs/det_sample_people.yaml OUTPUT_DIR $OUTDIR1 TEST.WEIGHTS output/people_train/model_best.pth
 
 # python train/test_net_det.py --cfg cfgs/det_sample_people.yaml OUTPUT_DIR $OUTDIR1 TEST.WEIGHTS $OUTDIR1/model_best.pth SAVE_SUB_DIR val_nms_best
 
