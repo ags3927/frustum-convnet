@@ -345,6 +345,11 @@ class ProviderDataset(Dataset):
 
         return data_inputs
 
+    # This generates labels for each point in the point cloud.
+    # There are three possible labels.
+    # 0 = point is outside the bounding box
+    # -1 = point is inside the standard bounding box (l,w,h)
+    # 1 = point is inside the reduced bounding box (l/2, w/2, h/2)
     def generate_labels(self, center, dimension, angle, ref_xyz, P):
         box_corner1 = compute_box_3d(center, dimension * 0.5, angle)
         box_corner2 = compute_box_3d(center, dimension, angle)

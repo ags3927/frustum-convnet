@@ -340,7 +340,11 @@ class PointNetDet(nn.Module):
                 data_dicts):
         point_cloud = data_dicts.get('point_cloud')
         one_hot_vec = data_dicts.get('one_hot')
+
+        # Labels for whether each point in the point cloud is inside the 3d bounding box or not
+        # IMPORTANT - this does not distinguish between different classes of objects
         cls_label = data_dicts.get('cls_label')
+        
         size_class_label = data_dicts.get('size_class')
         center_label = data_dicts.get('box3d_center')
         heading_label = data_dicts.get('box3d_heading')
@@ -381,6 +385,11 @@ class PointNetDet(nn.Module):
         center_ref2 = center_ref2.permute(0, 2, 1).contiguous().view(-1, 3)
 
         cls_probs = F.softmax(cls_scores, -1)
+        
+        # center_label is implicitly None only when model is run for predictions and not
+        # for evaluation/validation. 
+        # So, the function outputs cls_probs or class probabilities
+        # for predictions and cls_loss or classification loss for evaluation/validation
 
         if center_label is None:
             assert not self.training, 'Please provide labels for training.'
@@ -411,6 +420,10 @@ class PointNetDet(nn.Module):
 
             heading_preds = heading_preds.view(batch_size, -1)
             heading_probs = heading_probs.view(batch_size, -1, self.num_bins)
+
+            # This output contains class predictions/probabilities because it is assumed
+            # that this block of code is executed when predicitions are needed, and not
+            # during validation/evaluation.
 
             # outputs = (cls_probs, center_preds, heading_preds, size_preds)
             outputs = (cls_probs, center_preds, heading_preds, size_preds, heading_probs, size_probs)
