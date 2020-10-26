@@ -240,6 +240,7 @@ class PointNetDet(nn.Module):
         self.feat_net = PointNetFeat(input_channel, num_vec)
         self.conv_net = ConvFeatNet(128, num_vec)
 
+        ### Never used >:(
         self.num_classes = num_classes
 
         num_bins = cfg.DATA.NUM_HEADING_BIN
@@ -247,8 +248,12 @@ class PointNetDet(nn.Module):
 
         output_size = 3 + num_bins * 2 + self.num_size_cluster * 4
 
+        ### Regression header
         self.reg_out = nn.Conv1d(768, output_size, 1)
+        
+        ### Classification header. But hardcoded for 2 classes >:(
         self.cls_out = nn.Conv1d(768, 2, 1)
+        
         self.relu = nn.ReLU(True)
 
         nn.init.kaiming_uniform_(self.cls_out.weight, mode='fan_in')

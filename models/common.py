@@ -195,6 +195,7 @@ def sigmoid_focal_loss(prob, target, alpha=0.25, gamma=2, grad_scale=None, weigh
     return loss
 
 
+#TODO - This function generates classification branch loss. Understand it.
 def softmax_focal_loss(prob, target, alpha=0.25, gamma=2, grad_scale=None, weights=None):
     alpha_t = (1 - alpha) * (target == 0).float() + alpha * (target >= 1).float()
 
@@ -213,7 +214,7 @@ def softmax_focal_loss(prob, target, alpha=0.25, gamma=2, grad_scale=None, weigh
 
     return loss
 
-
+#TODO - This function generates classification branch loss. Understand it.
 def softmax_focal_loss_ignore(prob, target, alpha=0.25, gamma=2, ignore_idx=-1):
     keep = (target != ignore_idx).nonzero().view(-1)
     num_fg = (target > 0).data.sum()

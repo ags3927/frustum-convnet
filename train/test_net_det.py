@@ -318,8 +318,8 @@ def test(model, test_dataset, test_loader, output_filename, result_dir=None):
     output_dir = os.path.join(result_dir, 'data')
 
     if 'test' not in cfg.TEST.DATASET:
-        # evaluate_py_wrapper(result_dir)
-        evaluate_cuda_wrapper(output_dir, cfg.TEST.DATASET)
+        evaluate_py_wrapper(result_dir)
+        # evaluate_cuda_wrapper(output_dir, cfg.TEST.DATASET)
     else:
         logger.info('results file save in  {}'.format(result_dir))
         os.system('cd %s && zip -q -r ../results.zip *' % (result_dir))
