@@ -16,6 +16,7 @@ import pickle
 import sys
 import os
 import numpy as np
+import json
 
 import torch
 import logging
@@ -159,7 +160,7 @@ class ProviderDataset(Dataset):
         # print(float(max_key) * stride)
         return max_key * stride
 
-    def regress_to_find_center_aggregate(self, point_cloud_arr, stride = 0.5):
+    def regress_to_find_center_aggregate(self, point_cloud_arr, stride = 0.1, buckets_on_either_side = 2):
         freq_dict = defaultdict(int)
         # key = discrete z distance steps.
         # value = Number of pcl points that has z values at that step or bin.
@@ -169,12 +170,9 @@ class ProviderDataset(Dataset):
         for idx in range(len(point_cloud_arr)):
             bin_number = np.round(point_cloud_arr[idx][2] / stride)
             freq_dict[bin_number] += 1
-            freq_dict[bin_number - 1] += 1
-            freq_dict[bin_number + 1] += 1
-            freq_dict[bin_number - 2] += 1
-            freq_dict[bin_number + 2] += 1
-            freq_dict[bin_number - 2] += 1
-            freq_dict[bin_number + 2] += 1
+            for i in range(1, buckets_on_either_side + 1):
+                freq_dict[bin_number - i] += 1
+                freq_dict[bin_number + i] += 1
         # print("Aggregate dictionary")
         # print(freq_dict)
         max_key = max(freq_dict, key=freq_dict.get)
@@ -215,20 +213,36 @@ class ProviderDataset(Dataset):
             point_set = point_set[:, :3]
 
         # MODIFICATION START - RUN HEURISTIC FUNCTION AND EVALUATE
-        z_sliding_window_regress = self.regress_to_find_center_aggregate(point_set, 0.5)
-
+        z_sliding_window_regress = self.regress_to_find_center_aggregate(point_set, cfg.HEURISTIC_STRIDE, cfg.HEURISTIC_BUCKETS)
+        
+        # print('Heuristic stride = ' + str(cfg.HEURISTIC_STRIDE))
+        # print('Heuristic buckets = ' + str(cfg.HEURISTIC_BUCKETS))
+        
         ### START CODE FOR EVALUATING HEURISTIC
 
         # self.errorMargins = np.append(self.errorMargins, np.absolute(z_sliding_window_regress - self.center_3d_raw_kitti[index][2]))
         
         # if (index > 0.999 * len(self.input_list)) and (self.printPercentiles is False):
-        #     print('PERCENTILES = ' + str(np.percentile(self.errorMargins, [5*x for x in range(0, 21)])))
+        #     # print('PERCENTILES = ' + str(np.percentile(self.errorMargins, [5*x for x in range(0, 21)])))
         #     self.printPercentiles = True
-        #     percentileFile = open('errorPercentiles', 'w+')
-        #     percentileFile.write('PERCENTILES FOR [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100] = ' + str(np.percentile(self.errorMargins, [5*x for x in range(0, 21)])))
+        #     # print(os.getcwd())
+        #     writeData = dict()
+        #     writeData['heuristic_stride'] = cfg.HEURISTIC_STRIDE
+        #     writeData['heuristic_buckets'] = cfg.HEURISTIC_BUCKETS
+        #     writeData['percentiles'] = list(np.percentile(self.errorMargins, [5*x for x in range(0, 21)]))
+            
+        #     percentileFile = open('heuristic_eval/error_percentiles_' + str(cfg.HEURISTIC_STRIDE) + '_' + str(cfg.HEURISTIC_BUCKETS) + '.json', 'w+')
+            
+        #     json.dump(writeData, percentileFile)
+
+        #     # percentileFile.write('Heuristic stride = ' + str(cfg.HEURISTIC_STRIDE))
+        #     # percentileFile.write('\nHeuristic buckets = ' + str(cfg.HEURISTIC_BUCKETS))
+        #     # percentileFile.write('\nPERCENTILES FOR [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100] = ' + str(np.percentile(self.errorMargins, [5*x for x in range(0, 21)])))
+           
         #     percentileFile.close()
         #     # plt.plot(errorBuckets, self.errorMargins)
         #     # plt.show()
+        #     exit(69420)
 
         ### END CODE FOR EVALUATING HEURISTIC
 
@@ -371,14 +385,14 @@ class ProviderDataset(Dataset):
 
     # MODIFICATION START - RETURN DEPTH BOUNDS TO SEARCH
     def resolve_centers_z(self, z_sliding_window_regress):
-        lower = max(0, z_sliding_window_regress - 8)
-        upper = min(70, z_sliding_window_regress + 8)
+        lower = max(0, z_sliding_window_regress - cfg.DATA.SEARCH_WINDOW)
+        upper = min(70, z_sliding_window_regress + cfg.DATA.SEARCH_WINDOW)
 
-        if z_sliding_window_regress < 8:
-            upper += 8 - z_sliding_window_regress
+        if z_sliding_window_regress < cfg.DATA.SEARCH_WINDOW:
+            upper += cfg.DATA.SEARCH_WINDOW - z_sliding_window_regress
 
-        if z_sliding_window_regress > 62:
-            lower -= z_sliding_window_regress - 62
+        if z_sliding_window_regress > 70 - cfg.DATA.SEARCH_WINDOW:
+            lower -= z_sliding_window_regress - (70 - cfg.DATA.SEARCH_WINDOW)
         return lower, upper
     # MODIFICATION END - RETURN DEPTH BOUNDS TO SEARCH
 

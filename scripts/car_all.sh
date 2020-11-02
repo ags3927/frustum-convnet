@@ -4,7 +4,7 @@ set -e
 
 export CUDA_VISIBLE_DEVICES=0
 
-python kitti/prepare_data.py --car_only --gen_train --gen_val --gen_val_rgb_detection 
+python kitti/prepare_data.py --car_only --gen_train --gen_val --gen_val_rgb_detection
 
 OUTDIR='output/car_train'
 python train/train_net_det.py --cfg cfgs/det_sample.yaml OUTPUT_DIR $OUTDIR

@@ -123,6 +123,8 @@ __C.DATA.DATASET_NAME = 'KITTI'
 
 __C.DATA.MAX_DEPTH = 70
 
+__C.DATA.SEARCH_WINDOW = 10 # This means that we search 10m in each direction
+
 __C.DATA.FILE = ''
 
 __C.DATA.DATA_ROOT = 'kitti'
@@ -190,6 +192,12 @@ __C.EVAL_MODE = False
 __C.IOU_THRESH = 0.7
 
 __C.disp = 50
+
+
+# heuristic variables
+__C.HEURISTIC_STRIDE = 0.6
+
+__C.HEURISTIC_BUCKETS = 9
 
 
 def assert_and_infer_cfg(cache_urls=True, make_immutable=True):

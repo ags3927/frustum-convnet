@@ -26,8 +26,8 @@ DATA:
   RTC: True
   WITH_EXTRA_FEAT: False
   NUM_SAMPLES: 1024
-  STRIDE: (0.1, 0.2, 0.4, 0.8)
-  HEIGHT_HALF: (0.1, 0.2, 0.4, 0.8)
+  STRIDE: (0.25, 0.5, 1.0, 2.0)
+  HEIGHT_HALF: (0.25, 0.5, 1.0, 2.0)
 
 RESUME: False
 NUM_GPUS: 1
