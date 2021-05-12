@@ -6,6 +6,7 @@ import sys
 import os
 import math
 import time
+import logging
 
 import numpy as np
 
@@ -25,6 +26,7 @@ from models.common import softmax_focal_loss_ignore, get_accuracy
 from ops.query_depth_point.query_depth_point import QueryDepthPoint
 from ops.pybind11.box_ops_cc import rbbox_iou_3d_pair
 
+from datetime import datetime
 # from utils.box_util import box3d_iou_pair # slow, not recommend
 
 from models.box_transform import size_decode, size_encode, center_decode, center_encode, angle_decode, angle_encode
@@ -130,17 +132,33 @@ class PointNetFeat(nn.Module):
         pc3 = sample_pc[2]
         pc4 = sample_pc[3]
 
+        # tic1 = datetime.now()
         feat1 = self.pointnet1(pc, feat, pc1)
         feat1, _ = torch.max(feat1, -1)
+        # toc1 = datetime.now()
+        # logging.info("POINTNET#1 TIME DELTA = " + str(toc1-tic1))
 
+
+        # tic2 = datetime.now()
         feat2 = self.pointnet2(pc, feat, pc2)
         feat2, _ = torch.max(feat2, -1)
+        # toc2 = datetime.now()
+        # logging.info("POINTNET#2 TIME DELTA = " + str(toc2-tic2))
 
+
+        # tic3 = datetime.now()
         feat3 = self.pointnet3(pc, feat, pc3)
         feat3, _ = torch.max(feat3, -1)
+        # toc3 = datetime.now()
+        # logging.info("POINTNET#3 TIME DELTA = " + str(toc3-tic3))
 
+
+        # tic4 = datetime.now()
         feat4 = self.pointnet4(pc, feat, pc4)
         feat4, _ = torch.max(feat4, -1)
+        # toc4 = datetime.now()
+        # logging.info("POINTNET#4 TIME DELTA = " + str(toc4-tic4))
+
 
         if one_hot_vec is not None:
             assert self.num_vec == one_hot_vec.shape[1]

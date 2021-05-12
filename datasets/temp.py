@@ -147,7 +147,7 @@ class ProviderDataset(Dataset):
         # print('Calib list = ', self.calib_list[0])
         # print('Calib list P0 =', self.calib_list[0]['P0'])
 
-        # center_len = len(self.center_3d_raw_kitti)
+        center_len = len(self.center_3d_raw_kitti)
         
         # z = 0
         # o = 0
@@ -291,17 +291,13 @@ class ProviderDataset(Dataset):
 
         # MODIFICATION START - RUN HEURISTIC FUNCTION AND EVALUATE
         # z_sliding_window_regress = self.regress_to_find_center(point_set, cfg.HEURISTIC_STRIDE)
-        # z_sliding_window_regress = self.regress_to_find_center_aggregate(point_set, cfg.HEURISTIC_STRIDE, cfg.HEURISTIC_BUCKETS)
+        z_sliding_window_regress = self.regress_to_find_center_aggregate(point_set, cfg.HEURISTIC_STRIDE, cfg.HEURISTIC_BUCKETS)
 
-        # int_class = 'Cyclist'
-
-        # if (cls_type == int_class):
-        #     self.estimated_depth = np.append(self.estimated_depth, z_sliding_window_regress)
-        #     self.ground_truth_depth = np.append(self.ground_truth_depth, self.center_3d_raw_kitti[index][2])
-            
+        self.estimated_depth = np.append(self.estimated_depth, z_sliding_window_regress)
+        self.ground_truth_depth = np.append(self.ground_truth_depth, self.center_3d_raw_kitti[index][2])
     
 
-        z_sliding_window_regress = self.center_3d_raw_kitti[index][2]
+        # z_sliding_window_regress = self.center_3d_raw_kitti[index][2]
         
         # print('Heuristic stride = ' + str(cfg.HEURISTIC_STRIDE))
         # print('Heuristic buckets = ' + str(cfg.HEURISTIC_BUCKETS))
@@ -310,52 +306,43 @@ class ProviderDataset(Dataset):
         
         # self.errorMargins = np.append(self.errorMargins, np.absolute(z_sliding_window_regress - self.center_3d_raw_kitti[index][2]))
         
-        # if (index > 0.999 * len(self.input_list)) and (self.printPercentiles is False):
-        #     rmse = np.sqrt((np.square(self.ground_truth_depth - self.estimated_depth)).mean())
+        if (index > 0.999 * len(self.input_list)) and (self.printPercentiles is False):
+            rmse = np.sqrt((np.square(self.ground_truth_depth - self.estimated_depth)).mean())
 
-        #     rle = (np.abs(np.subtract(self.estimated_depth, self.ground_truth_depth)) / self.ground_truth_depth).mean() * 100
+            rle = np.abs(np.subtract(self.estimated_depth, self.ground_truth_depth) / self.ground_truth_depth).mean() * 100
 
-        #     de1 = self.delta_error(power_i=1)
-        #     de2 = self.delta_error(power_i=2)
-        #     de3 = self.delta_error(power_i=3)
+            de = self.delta_error()
+
+            errorFile = open('heuristic_eval/errors', 'w+')
+
+            writeData = dict()
+
+            writeData['rmse'] = rmse
+            writeData['rel'] = rle
+            writeData['del'] = de
+            json.dump(writeData, errorFile)
+            errorFile.close()
+
+            # # print('PERCENTILES = ' + str(np.percentile(self.errorMargins, [5*x for x in range(0, 21)])))
+            # self.printPercentiles = True
+            # # print(os.getcwd())
+            # writeData = dict()
+            # writeData['heuristic_stride'] = cfg.HEURISTIC_STRIDE
+            # writeData['heuristic_buckets'] = cfg.HEURISTIC_BUCKETS
+            # writeData['percentiles'] = list(np.percentile(self.errorMargins, [5*x for x in range(0, 21)]))
             
-        #     # print('RMSE IS THE SHIT MAN = ' + str(rmse))
-        #     # print('RLE IS SUPPOSED TO BE REL MAN = ' + str(rle))
-
-
-        #     errorFile = open('heuristic_eval/errors_' + int_class + '.txt', 'w+')
-
-        #     writeData = dict()
-
-        #     writeData['rmse'] = rmse
-        #     writeData['rel'] = rle
-        #     writeData['del1'] = de1
-        #     writeData['del2'] = de2
-        #     writeData['del3'] = de3
-        #     json.dump(writeData, errorFile)
-        #     errorFile.close()
-
-
-        #     # # print('PERCENTILES = ' + str(np.percentile(self.errorMargins, [5*x for x in range(0, 21)])))
-        #     # self.printPercentiles = True
-        #     # # print(os.getcwd())
-        #     # writeData = dict()
-        #     # writeData['heuristic_stride'] = cfg.HEURISTIC_STRIDE
-        #     # writeData['heuristic_buckets'] = cfg.HEURISTIC_BUCKETS
-        #     # writeData['percentiles'] = list(np.percentile(self.errorMargins, [5*x for x in range(0, 21)]))
+            # percentileFile = open('heuristic_eval/error_percentiles_' + str(cfg.HEURISTIC_STRIDE) + '_' + str(cfg.HEURISTIC_BUCKETS) + '.json', 'w+')
             
-        #     # percentileFile = open('heuristic_eval/error_percentiles_' + str(cfg.HEURISTIC_STRIDE) + '_' + str(cfg.HEURISTIC_BUCKETS) + '.json', 'w+')
-            
-        #     # json.dump(writeData, percentileFile)
+            # json.dump(writeData, percentileFile)
 
-        #     # # percentileFile.write('Heuristic stride = ' + str(cfg.HEURISTIC_STRIDE))
-        #     # # percentileFile.write('\nHeuristic buckets = ' + str(cfg.HEURISTIC_BUCKETS))
-        #     # # percentileFile.write('\nPERCENTILES FOR [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100] = ' + str(np.percentile(self.errorMargins, [5*x for x in range(0, 21)])))
+            # # percentileFile.write('Heuristic stride = ' + str(cfg.HEURISTIC_STRIDE))
+            # # percentileFile.write('\nHeuristic buckets = ' + str(cfg.HEURISTIC_BUCKETS))
+            # # percentileFile.write('\nPERCENTILES FOR [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100] = ' + str(np.percentile(self.errorMargins, [5*x for x in range(0, 21)])))
            
-        #     # percentileFile.close()
-        #     # # plt.plot(errorBuckets, self.errorMargins)
-        #     # # plt.show()
-        #     exit()
+            # percentileFile.close()
+            # # plt.plot(errorBuckets, self.errorMargins)
+            # # plt.show()
+            exit(69420)
 
         ### END CODE FOR EVALUATING HEURISTIC
 

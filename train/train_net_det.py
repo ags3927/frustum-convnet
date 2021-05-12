@@ -110,6 +110,7 @@ def train(data_loader, model, optimizer, lr_scheduler, epoch, logger=None):
     loader_size = len(data_loader)
 
     training_states = TrainingStates()
+    total_batch_time = 0   # Used to track the total time required to perform computation
 
     for i, (data_dicts) in enumerate(data_loader):
 
@@ -134,6 +135,10 @@ def train(data_loader, model, optimizer, lr_scheduler, epoch, logger=None):
         training_states.update_states(dict(**losses_reduce, **metrics_reduce), batch_size)
 
         batch_time_meter.update(time.time() - tic)
+   
+        # Add the time taken for current batch to be processed to the total batch time
+        total_batch_time += batch_time_meter.val - data_time_meter.val
+
         tic = time.time()
 
         if (i + 1) % cfg.disp == 0 or (i + 1) == loader_size:
@@ -157,6 +162,18 @@ def train(data_loader, model, optimizer, lr_scheduler, epoch, logger=None):
             states = training_states.get_states(avg=True)
             for tag, value in states.items():
                 logger.scalar_summary(tag, value, int(epoch))
+
+    # Calculate average batch time by dividing the total time with number of batches
+    avg_batch_time = total_batch_time / loader_size
+
+    #MODIFICATION START - PRINT TIME METRICS
+    timeFile = open("train-time-log.txt", "w")
+    timeFile.write('Average time:\n')
+    timeFile.write('batch:%0.6f\n' % avg_batch_time)
+    timeFile.write('Number of batches = ' + str(loader_size))
+    timeFile.close()
+    #MODIFICATION END - PRINT TIME METRICS
+    
 
 
 def validate(data_loader, model, epoch, logger=None):

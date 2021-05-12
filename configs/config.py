@@ -123,7 +123,7 @@ __C.DATA.DATASET_NAME = 'KITTI'
 
 __C.DATA.MAX_DEPTH = 70
 
-__C.DATA.SEARCH_WINDOW = 10 # This means that we search 10m in each direction
+__C.DATA.SEARCH_WINDOW = 13 # This means that we search SEARCH_WINDOW meters in each direction
 
 __C.DATA.FILE = ''
 
@@ -195,9 +195,9 @@ __C.disp = 50
 
 
 # heuristic variables
-__C.HEURISTIC_STRIDE = 0.6
+__C.HEURISTIC_STRIDE = 0.75
 
-__C.HEURISTIC_BUCKETS = 9
+__C.HEURISTIC_BUCKETS = 7
 
 
 def assert_and_infer_cfg(cache_urls=True, make_immutable=True):

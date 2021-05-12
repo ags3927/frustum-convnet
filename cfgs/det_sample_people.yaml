@@ -35,6 +35,6 @@ OUTPUT_DIR: 'output/people_train'
 SAVE_SUB_DIR: 'val_nms'
 USE_TFBOARD: False
 NUM_WORKERS: 4
-FROM_RGB_DET: True
+FROM_RGB_DET: False
 disp: 50
 IOU_THRESH: 0.5

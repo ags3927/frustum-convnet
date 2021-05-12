@@ -1,4 +1,5 @@
 best_models_and_stats/
+experiments/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
